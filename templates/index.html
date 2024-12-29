@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Student Management System</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+
+	<nav>
+		<label class="logo">SMART-EDUCATION</label>
+
+		<ul>
+			<li><a href="">Home</a></li>
+			<li><a href="">Contact</a></li>
+			<li><a href="">Admission</a></li>
+			<li><a href="{{ url_for('login') }}" class="btn btn-success">Login</a></li>
+
+		</ul>
+	</nav>
+
+
+	<div class="section1">
+		<label class="img_text">We Teach Students With Care</label>
+		<img class="main_img" src="{{ url_for('static', filename='images/cvr.jpg') }}">
+	</div>
+
+
+	<div class="container">
+
+		<div class="row">
+
+			<div class="col-md-4">
+
+				<img class="welcome_img" src="{{ url_for('static', filename='images/SMART.jpg') }}">
+				
+			</div>
+
+			<div class="col-md-8">
+
+				<h1>Welcome to Smart-Education</h1>
+
+				<p>At Smart-Education, we're dedicated to excellence in education. Our rigorous programs, renowned faculty, and state-of-the-art facilities create an inspiring learning environment. Explore our programs, discover groundbreaking research, and find your path to success at Smart-Education. </p>
+				
+			</div>
+			
+
+		</div>
+		
+
+	</div>
+
+
+	<center>
+		<h1>Our Department</h1>
+	</center>
+
+
+	<div class="container">
+
+		<div class="row">
+
+			<div class="col-md-4">
+
+				<img class="teacher" src="{{ url_for('static', filename='images/engineering.jpeg') }}">
+				<h3>Engineering</h3>
+				
+				
+			</div>
+
+			<div class="col-md-4">
+
+				<img class="teacher" src="{{ url_for('static', filename='images/bsc.jpeg') }}">
+				<h3>BSC</h3>
+				
+			</div>
+
+			<div class="col-md-4">
+
+				<img class="teacher" src="{{ url_for('static', filename='images/management.jpeg') }}">
+				<h3>Management</h3>
+				
+			</div>
+			
+
+		</div>
+		
+
+	</div>
+
+
+
+
+	
+
+</body>
+</html>

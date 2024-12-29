@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enrolled Students</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f5f7fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Students Enrolled in {{ enrollments[0].course.name if enrollments else 'Course' }}</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Student Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for enrollment in enrollments %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ enrollment.student.username }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/lecturer_dashboard" class="btn btn-secondary">Back</a>
+    </div>
+</body>
+</html>

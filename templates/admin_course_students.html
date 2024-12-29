@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Students for {{ course.name }}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #007bff;">
+        <a class="navbar-brand" href="#">Manage Students</a>
+        <div class="ml-auto">
+            <a href="/admin_dashboard" class="btn btn-light btn-sm">Back to Dashboard</a>
+            <a href="/logout" class="btn btn-danger btn-sm">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h2>Manage Students for {{ course.name }}</h2>
+        <h4>Enrolled Students</h4>
+        <ul class="list-group">
+            {% for student in enrolled_students %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ student.username }}
+                <form action="/admin_remove_student_from_course/{{ course.id }}/{{ student.id }}" method="POST" style="display:inline;">
+                    <button class="btn btn-danger btn-sm">Remove</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <h4 class="mt-4">Add a Student</h4>
+        <form action="/admin_add_student_to_course/{{ course.id }}" method="POST">
+            <div class="form-group">
+                <label for="student_id">Select a Student</label>
+                <select name="student_id" class="form-control" required>
+                    <option value="" disabled selected>Select a Student</option>
+                    {% for student in all_students %}
+                    <option value="{{ student.id }}">{{ student.username }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Student</button>
+        </form>
+    </div>
+</body>
+</html>

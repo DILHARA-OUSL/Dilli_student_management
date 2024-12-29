@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Students for {{ course.name }}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #007bff;
+            color: white;
+        }
+        .navbar a {
+            color: white !important;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .card {
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">Manage Students</a>
+        <div class="ml-auto">
+            <a href="/admin_dashboard" class="btn btn-light btn-sm">Back to Dashboard</a>
+            <a href="/logout" class="btn btn-danger btn-sm">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h3>Manage Students for {{ course.name }}</h3>
+        <div class="card">
+            <h4>Enrolled Students</h4>
+            <ul>
+                {% for student in course.students %}
+                <li>
+                    {{ student.username }}
+                    <form action="/manage_course_students/{{ course.id }}" method="POST" style="display:inline;">
+                        <input type="hidden" name="student_id" value="{{ student.id }}">
+                        <input type="hidden" name="action" value="remove">
+                        <button class="btn btn-danger btn-sm">Remove</button>
+                    </form>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="card">
+            <h4>Add Students</h4>
+            <form action="/manage_course_students/{{ course.id }}" method="POST">
+                <div class="form-group">
+                    <label for="student_id">Select Student</label>
+                    <select name="student_id" id="student_id" class="form-control" required>
+                        {% for student in students %}
+                        <option value="{{ student.id }}">{{ student.username }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <input type="hidden" name="action" value="add">
+                <button class="btn btn-primary">Add Student</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .chat-box {
+            max-height: 400px;
+            overflow-y: scroll;
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        .chat-message {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Chat Room</h2>
+        <div class="chat-box">
+            {% for msg in chat_history %}
+            <div class="chat-message">
+                <strong>{{ msg.sender }}</strong> to <em>{{ msg.recipient }}</em>: {{ msg.message }}
+                <small class="text-muted">({{ msg.timestamp }})</small>
+            </div>
+            {% endfor %}
+        </div>
+        <form action="/chat" method="POST" class="mt-3">
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea name="message" id="message" class="form-control" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send</button>
+            <a href="{{ url_for(session['role'] + '_dashboard') }}" class="btn btn-primary">Back to Dashboard</a>
+
+        </form>
+        
+    </div>
+</body>
+</html>

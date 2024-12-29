@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Student to Course</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Add Student to {{ course.name }}</h2>
+        <form action="/add_student_to_course/{{ course.id }}" method="POST">
+            <div class="form-group">
+                <label for="student_id">Select Student:</label>
+                <select name="student_id" class="form-control" required>
+                    {% for student in students %}
+                    {% if student.id not in enrolled_students %}
+                    <option value="{{ student.id }}">{{ student.username }}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Student</button>
+            <a href="/view_course_students/{{ course.id }}" class="btn btn-secondary">Back</a>
+        </form>
+    </div>
+</body>
+</html>

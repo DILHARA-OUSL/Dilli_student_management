@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Students</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Manage Students</a>
+        <div class="ml-auto">
+            <a href="/lecturer_courses" class="btn btn-light btn-sm">Back to Dashboard</a>
+            <a href="/logout" class="btn btn-danger btn-sm">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h2>Manage Students for {{ course.name }}</h2>
+
+        <h4>Enrolled Students</h4>
+        <ul class="list-group mb-4">
+            {% for student in enrolled_students %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ student.username }}
+                <form action="/course_students/{{ course.id }}" method="POST" style="display:inline;">
+                    <input type="hidden" name="student_id" value="{{ student.id }}">
+                    <input type="hidden" name="action" value="remove">
+                    <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <h4>All Students</h4>
+        <form action="/course_students/{{ course.id }}" method="POST">
+            <div class="form-group">
+                <label for="student_id">Add a Student</label>
+                <select name="student_id" id="student_id" class="form-control">
+                    {% for student in students %}
+                    {% if student not in enrolled_students %}
+                    <option value="{{ student.id }}">{{ student.username }}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <input type="hidden" name="action" value="add">
+            <button type="submit" class="btn btn-primary">Add Student</button>
+        </form>
+    </div>
+</body>
+</html>

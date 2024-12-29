@@ -1,0 +1,29 @@
+<h2>Study Groups</h2>
+<a href="/create_group" class="btn btn-primary">Create New Group</a>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Admin</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for group in groups %}
+        <tr>
+            <td>{{ group.name }}</td>
+            <td>{{ group.description }}</td>
+            <td>{{ group.admin.username }}</td>
+            <td>
+                <form action="/join_group/{{ group.id }}" method="POST">
+                    <button type="submit">Join</button>
+                </form>
+                <form action="/leave_group/{{ group.id }}" method="POST">
+                    <button type="submit">Leave</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
