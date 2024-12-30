@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Course</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Edit Course</h2>
+        <form action="/edit_course/{{ course.id }}" method="POST">
+            <div class="form-group">
+                <label for="name">Course Name</label>
+                <input type="text" name="name" class="form-control" value="{{ course.name }}" required>
+            </div>
+            <div class="form-group">
+                <label for="code">Course Code</label>
+                <input type="text" name="code" class="form-control" value="{{ course.code }}" required>
+            </div>
+            <div class="form-group">
+                <label for="lecturer_id">Assign Lecturer</label>
+                <select name="lecturer_id" class="form-control">
+                    <option value="" disabled>Select a Lecturer</option>
+                    {% for lecturer in lecturers %}
+                    <option value="{{ lecturer.id }}" {% if lecturer.id == course.lecturer_id %}selected{% endif %}>
+                        {{ lecturer.username }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Course</button>
+            <a href="/admin_dashboard" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>
